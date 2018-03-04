@@ -1,5 +1,3 @@
-import fetch from 'cross-fetch';
-
 export const LOAD_IDEAS = 'LOAD_IDEAS';
 export const LOAD_IDEAS_SUCCESS = 'LOAD_IDEAS_SUCCESS';
 
