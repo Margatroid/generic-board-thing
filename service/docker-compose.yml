@@ -14,7 +14,7 @@ services:
     image: idea-memo-board/service
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 8000 -b '0.0.0.0'"
     environment:
-      - DATABASE_URL=postgresql://user:password@devdb
+      - DATABASE_URL=postgresql://user:password@db
       - APP_DOMAIN=http://localhost:8000
     ports:
       - '8000:8000'
