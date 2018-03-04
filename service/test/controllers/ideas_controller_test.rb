@@ -16,6 +16,8 @@ class IdeasControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_response 201
+    response = JSON.parse(@response.body)
+    assert_equal(Idea.last.id, response['id'])
   end
 
   test "should show idea" do

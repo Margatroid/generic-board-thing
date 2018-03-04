@@ -1,4 +1,4 @@
-class IdeasController < ApplicationController
+class IdeasController < ActionController::API
   before_action :set_idea, only: [:show, :update, :destroy]
 
   # GET /ideas
