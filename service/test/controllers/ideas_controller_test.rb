@@ -12,7 +12,7 @@ class IdeasControllerTest < ActionDispatch::IntegrationTest
 
   test "should create idea" do
     assert_difference('Idea.count') do
-      post ideas_url, params: { idea: {  } }, as: :json
+      post ideas_url, params: { idea: { title: 'Hello', body: 'World' } }, as: :json
     end
 
     assert_response 201
