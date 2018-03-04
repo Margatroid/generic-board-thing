@@ -10,7 +10,7 @@ const ideasReducer = (state = initialState, action) => {
     case LOAD_IDEAS:
       return { ...state, loading: true };
     case LOAD_IDEAS_SUCCESS:
-      return { ...state, loading: false };
+      return { ...state, ideas: action.ideas, loading: false };
     default:
       return state;
   }
