@@ -21,8 +21,17 @@ class IdeasControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should show idea" do
-    get idea_url(@idea), as: :json
+    idea = ideas(:one)
+    idea.body = 'Hi'
+    idea.title = 'You'
+    idea.save
+
+    get idea_url(idea), as: :json
     assert_response :success
+
+    response = JSON.parse(@response.body)
+    assert_equal(idea.body, response['body'])
+    assert_equal(idea.title, response['title'])
   end
 
   test "should update idea" do
