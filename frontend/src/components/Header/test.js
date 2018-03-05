@@ -4,5 +4,5 @@ import Header from './index';
 
 it('renders without crashing', () => {
   const wrapper = shallow(<Header />);
-  expect(wrapper.find('div').length).toEqual(1);
+  expect(wrapper.find('nav').length).toEqual(1);
 });

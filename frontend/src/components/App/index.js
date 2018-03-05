@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import { loadIdeas } from '../../actions';
 
+import Header from '../Header/';
+
 const mapStateToProps = state => {
   return {
     ideas: state.ideas,
@@ -24,7 +26,11 @@ export class App extends Component {
   }
 
   render() {
-    return <div className="App">Hi</div>;
+    return (
+      <div>
+        <Header />
+      </div>
+    );
   }
 }
 
