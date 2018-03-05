@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { loadIdeas } from '../../actions';
 
 import Header from '../Header/';
+import Ideas from '../Ideas/';
 
 const mapStateToProps = state => {
   return {
@@ -29,6 +30,7 @@ export class App extends Component {
     return (
       <div>
         <Header />
+        <Ideas ideas={this.props.ideas} />
       </div>
     );
   }

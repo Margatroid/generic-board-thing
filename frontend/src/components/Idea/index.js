@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Idea = () => {
-  return <div />;
+const Idea = ({ title }) => {
+  return <div>{title}</div>;
 };
 
 export default Idea;

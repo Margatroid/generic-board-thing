@@ -4,6 +4,6 @@ import { App } from './index';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<App loadIdeas={() => {}} />, div);
+  ReactDOM.render(<App ideas={[]} loadIdeas={() => {}} />, div);
   ReactDOM.unmountComponentAtNode(div);
 });
