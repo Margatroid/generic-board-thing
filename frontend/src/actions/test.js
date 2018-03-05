@@ -1,5 +1,5 @@
-import thunk from 'redux-thunk'
-import configureMockStore from 'redux-mock-store'
+import thunk from 'redux-thunk';
+import configureMockStore from 'redux-mock-store';
 import * as actions from './index';
 
 const middlewares = [thunk];
@@ -16,10 +16,7 @@ describe('actions', () => {
 
 describe('async actions', () => {
   it('creates LOAD_IDEAS_SUCCESS after successful fetch from service', () => {
-    const ideas = [
-      { title: 'chocolate' },
-      { title: 'caramel' }
-    ];
+    const ideas = [{ title: 'chocolate' }, { title: 'caramel' }];
     fetch.mockResponseOnce(JSON.stringify(ideas));
 
     const expectedActions = [
@@ -29,7 +26,7 @@ describe('async actions', () => {
     const store = mockStore({ ideas: [] });
 
     return store.dispatch(actions.loadIdeas()).then(() => {
-      expect(store.getActions()).toEqual(expectedActions)
+      expect(store.getActions()).toEqual(expectedActions);
     });
   });
 });
