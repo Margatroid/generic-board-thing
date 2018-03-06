@@ -1,5 +1,6 @@
 export const LOAD_IDEAS = 'LOAD_IDEAS';
 export const LOAD_IDEAS_SUCCESS = 'LOAD_IDEAS_SUCCESS';
+export const ON_TITLE_CHANGE = 'ON_TITLE_CHANGE';
 
 // Action creators
 export function loadIdeas() {
@@ -27,6 +28,14 @@ export function newIdea() {
         error => console.error('Error:', error)
       )
       .then(dispatch(loadIdeas()));
+  };
+}
+
+export function onTitleChange(id, text) {
+  return {
+    type: ON_TITLE_CHANGE,
+    id,
+    text
   };
 }
 
