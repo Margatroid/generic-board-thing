@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { loadIdeas } from '../../actions';
+import { loadIdeas, newIdea } from '../../actions';
 
 import Header from '../Header/';
 import Ideas from '../Ideas/';
@@ -17,6 +17,9 @@ const mapDispatchToProps = dispatch => {
   return {
     loadIdeas: () => {
       dispatch(loadIdeas());
+    },
+    newIdea: () => {
+      dispatch(newIdea());
     }
   };
 };
@@ -29,7 +32,7 @@ export class App extends Component {
   render() {
     return (
       <div>
-        <Header />
+        <Header newIdea={this.props.newIdea} />
         <Ideas ideas={this.props.ideas} />
       </div>
     );

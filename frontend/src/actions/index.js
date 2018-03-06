@@ -16,6 +16,20 @@ export function loadIdeas() {
   };
 }
 
+export function newIdea() {
+  return dispatch => {
+    // Dispatch something here to start loading spinner.
+    dispatch({ type: LOAD_IDEAS });
+
+    return fetch('http://localhost:8000/ideas', { method: 'POST' })
+      .then(
+        response => response.json(),
+        error => console.error('Error:', error)
+      )
+      .then(dispatch(loadIdeas()));
+  };
+}
+
 export function loadIdeasSuccess(ideas) {
   return { type: LOAD_IDEAS_SUCCESS, ideas };
 }

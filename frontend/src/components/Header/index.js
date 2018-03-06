@@ -1,13 +1,13 @@
 import React from 'react';
 
-const Header = () => {
+const Header = ({ newIdea }) => {
   return (
     <nav className="is-light navbar" aria-label="main navigation">
       <div className="navbar-brand">
         <div className="navbar-item">
           <div className="field">
             <p className="control">
-              <a className="button is-link is-primary">
+              <a className="button is-link is-primary" onClick={newIdea}>
                 <span className="icon">
                   <i className="fas fa-plus" />
                 </span>
