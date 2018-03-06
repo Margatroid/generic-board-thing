@@ -51,7 +51,7 @@ export class App extends Component {
   render() {
     return (
       <div>
-        <Header newIdea={this.props.newIdea} />
+        <Header isLoading={this.props.loading} newIdea={this.props.newIdea} />
         <Ideas
           onTitleChange={this.props.onTitleChange}
           onBodyChange={this.props.onBodyChange}

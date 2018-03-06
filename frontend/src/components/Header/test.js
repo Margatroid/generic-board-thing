@@ -18,3 +18,9 @@ it('calls new idea callback when you press new idea', () => {
   newIdeaButton.simulate('click');
   expect(newIdeaCallback.mock.calls.length).toBe(1);
 });
+
+it('will show spinner if loading', () => {
+  const wrapper = shallow(<Header isLoading={true} />);
+  const spinner = wrapper.find('.fa-spin');
+  expect(spinner.length).toEqual(1);
+});
