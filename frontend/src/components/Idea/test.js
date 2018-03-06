@@ -17,4 +17,14 @@ describe('editing', () => {
     expect(mockHandler.mock.calls[0][0]).toBe(10);
     expect(mockHandler.mock.calls[0][1]).toBe('Hi');
   });
+
+  it('will call the onBodyChange handler when body is edited', () => {
+    const mockHandler = jest.fn();
+    const wrapper = shallow(<Idea onBodyChange={mockHandler} id={11} />);
+    const body = wrapper.find('textarea[name="body"]');
+    body.simulate('change', { target: { value: 'Hello world' } });
+
+    expect(mockHandler.mock.calls[0][0]).toBe(11);
+    expect(mockHandler.mock.calls[0][1]).toBe('Hello world');
+  });
 });

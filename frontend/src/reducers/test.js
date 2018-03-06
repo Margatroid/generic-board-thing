@@ -10,13 +10,14 @@ describe('reducer', () => {
     });
   });
 
-  describe('changing a title', () => {
-    it('will edit a title', () => {
+  describe('changing a tile', () => {
+    it('will edit title and body', () => {
       const initialState = {
         ideas: [
           {
             title: 'old',
-            id: 18
+            id: 18,
+            body: 'x'
           },
           {
             title: 'old2',
@@ -25,20 +26,15 @@ describe('reducer', () => {
         ]
       };
 
-      const newState = {
-        ideas: [
-          {
-            title: 'old',
-            id: 18
-          },
-          {
-            title: 'new!',
-            id: 8
-          }
-        ]
-      };
-      const action = { type: actions.ON_TITLE_CHANGE, id: 8, text: 'new!' };
-      expect(reducer(initialState, action)).toEqual(newState);
+      const titleEditAction = actions.onTitleChange(8, 'new!');
+      expect(reducer(initialState, titleEditAction).ideas[1].title).toEqual(
+        'new!'
+      );
+
+      const bodyEditAction = actions.onBodyChange(18, 'wut');
+      expect(reducer(initialState, bodyEditAction).ideas[0].body).toEqual(
+        'wut'
+      );
     });
   });
 });

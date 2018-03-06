@@ -1,6 +1,7 @@
 export const LOAD_IDEAS = 'LOAD_IDEAS';
 export const LOAD_IDEAS_SUCCESS = 'LOAD_IDEAS_SUCCESS';
 export const ON_TITLE_CHANGE = 'ON_TITLE_CHANGE';
+export const ON_BODY_CHANGE = 'ON_BODY_CHANGE';
 
 // Action creators
 export function loadIdeas() {
@@ -34,6 +35,16 @@ export function newIdea() {
 export function onTitleChange(id, text) {
   return {
     type: ON_TITLE_CHANGE,
+    field: 'title',
+    id,
+    text
+  };
+}
+
+export function onBodyChange(id, text) {
+  return {
+    type: ON_BODY_CHANGE,
+    field: 'body',
     id,
     text
   };

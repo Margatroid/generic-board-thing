@@ -1,8 +1,24 @@
-import { LOAD_IDEAS, LOAD_IDEAS_SUCCESS, ON_TITLE_CHANGE } from '../actions';
+import {
+  LOAD_IDEAS,
+  LOAD_IDEAS_SUCCESS,
+  ON_TITLE_CHANGE,
+  ON_BODY_CHANGE
+} from '../actions';
 
 const initialState = {
   ideas: [],
   loading: false
+};
+
+const ideaEdit = (state, action) => {
+  const { id, text } = action;
+  const ideas = state.ideas.map(idea => ({ ...idea }));
+  const ideaIndex = state.ideas.findIndex(idea => idea.id === id);
+
+  if (ideaIndex < 0) return state;
+  ideas[ideaIndex][action.field] = text;
+
+  return { ...state, ideas };
 };
 
 const ideasReducer = (state = initialState, action) => {
@@ -12,14 +28,8 @@ const ideasReducer = (state = initialState, action) => {
     case LOAD_IDEAS_SUCCESS:
       return { ...state, ideas: action.ideas, loading: false };
     case ON_TITLE_CHANGE:
-      const { id, text } = action;
-      const ideas = state.ideas.map(idea => ({ ...idea }));
-      const ideaIndex = state.ideas.findIndex(idea => idea.id === id);
-
-      if (ideaIndex < 0) return state;
-      ideas[ideaIndex].title = text;
-
-      return { ...state, ideas };
+    case ON_BODY_CHANGE:
+      return ideaEdit(state, action);
     default:
       return state;
   }
