@@ -8,7 +8,7 @@ const mockStore = configureMockStore(middlewares);
 describe('actions', () => {
   it('should create an action with loaded ideas', () => {
     const ideas = [{ title: 'foo' }];
-    const expected = { type: actions.LOAD_IDEAS_SUCCESS, ideas };
+    const expected = { type: actions.LOAD_IDEAS_SUCCESS, ideas, focus: null };
 
     expect(actions.loadIdeasSuccess(ideas)).toEqual(expected);
   });
@@ -25,7 +25,7 @@ describe('async actions', () => {
 
     const expectedActions = [
       { type: actions.LOAD_IDEAS },
-      { type: actions.LOAD_IDEAS_SUCCESS, ideas: ideas }
+      { type: actions.LOAD_IDEAS_SUCCESS, ideas: ideas, focus: null }
     ];
     const store = mockStore({ ideas: [] });
 
@@ -43,7 +43,7 @@ describe('async actions', () => {
       // Reload of ideas
       { type: actions.LOAD_IDEAS },
       // Successful reload of ideas
-      { type: actions.LOAD_IDEAS_SUCCESS, ideas: [] }
+      { type: actions.LOAD_IDEAS_SUCCESS, ideas: [], focus: null }
     ];
     const store = mockStore({ ideas: [] });
 
@@ -63,7 +63,7 @@ describe('async actions', () => {
       // Reload of ideas
       { type: actions.LOAD_IDEAS },
       // Successful reload of ideas
-      { type: actions.LOAD_IDEAS_SUCCESS, ideas: [] }
+      { type: actions.LOAD_IDEAS_SUCCESS, ideas: [], focus: null }
     ];
     const store = mockStore({ ideas: [] });
     const headers = { 'content-type': 'application/json' };
@@ -95,7 +95,7 @@ describe('async actions', () => {
       // Reload of ideas
       { type: actions.LOAD_IDEAS },
       // Successful reload of ideas
-      { type: actions.LOAD_IDEAS_SUCCESS, ideas: [] }
+      { type: actions.LOAD_IDEAS_SUCCESS, ideas: [], focus: null }
     ];
     const store = mockStore({ ideas: [] });
 

@@ -17,6 +17,7 @@ const Ideas = ({
         key={index}
         title={idea.title}
         body={idea.body}
+        focus={idea.focus}
         saveIdea={saveIdea}
         deleteIdea={deleteIdea}
       />

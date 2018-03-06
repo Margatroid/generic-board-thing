@@ -10,7 +10,8 @@ const Idea = ({
   saveIdea,
   onBodyChange,
   onTitleChange,
-  deleteIdea
+  deleteIdea,
+  focus
 }) => {
   const titleValue = title || '';
   const titleChangeHandler = event => {
@@ -52,6 +53,7 @@ const Idea = ({
               type="text"
               placeholder="Title"
               value={titleValue}
+              autoFocus={focus}
             />
           </div>
         </div>

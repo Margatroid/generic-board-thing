@@ -22,13 +22,22 @@ const ideaEdit = (state, action) => {
   return { ...state, ideas };
 };
 
+const loadIdeasSuccess = (state, action) => {
+  const { focus, ideas } = action;
+  if (focus) {
+    const ideaIndex = ideas.findIndex(idea => idea.id === focus);
+    ideas[ideaIndex].focus = true;
+  }
+  return { ...state, ideas, loading: false };
+};
+
 const ideasReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_IDEAS:
     case START_LOADING:
       return { ...state, loading: true };
     case LOAD_IDEAS_SUCCESS:
-      return { ...state, ideas: action.ideas, loading: false };
+      return loadIdeasSuccess(state, action);
     case ON_TITLE_CHANGE:
     case ON_BODY_CHANGE:
       return ideaEdit(state, action);

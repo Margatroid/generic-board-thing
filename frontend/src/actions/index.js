@@ -5,7 +5,7 @@ export const ON_BODY_CHANGE = 'ON_BODY_CHANGE';
 export const START_LOADING = 'START_LOADING';
 
 // Action creators
-export function loadIdeas() {
+export function loadIdeas(focus = null) {
   return dispatch => {
     // Dispatch something here to start loading spinner.
     dispatch({ type: LOAD_IDEAS });
@@ -15,7 +15,7 @@ export function loadIdeas() {
         response => response.json(),
         error => console.error('Error:', error)
       )
-      .then(json => dispatch(loadIdeasSuccess(json)));
+      .then(json => dispatch(loadIdeasSuccess(json, focus)));
   };
 }
 
@@ -29,7 +29,7 @@ export function newIdea() {
         response => response.json(),
         error => console.error('Error:', error)
       )
-      .then(response => dispatch(loadIdeas()));
+      .then(response => dispatch(loadIdeas(response.id)));
   };
 }
 
@@ -81,6 +81,6 @@ export function onBodyChange(id, text) {
   };
 }
 
-export function loadIdeasSuccess(ideas) {
-  return { type: LOAD_IDEAS_SUCCESS, ideas };
+export function loadIdeasSuccess(ideas, focus = null) {
+  return { type: LOAD_IDEAS_SUCCESS, ideas, focus };
 }

@@ -37,4 +37,17 @@ describe('reducer', () => {
       );
     });
   });
+
+  describe('setting focus', () => {
+    it('will set focus', () => {
+      const initialState = { ideas: [{ id: 8 }] };
+      const loadedIdeas = [{ id: 14 }, { id: 8 }];
+      const newState = reducer(
+        initialState,
+        actions.loadIdeasSuccess(loadedIdeas, 8)
+      );
+
+      expect(newState.ideas[1].focus).toEqual(true);
+    });
+  });
 });
