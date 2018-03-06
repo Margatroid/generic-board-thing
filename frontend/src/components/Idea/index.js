@@ -1,7 +1,15 @@
 import React from 'react';
 import './styles.css';
 
-const Idea = ({ title, id, body, save, onBodyChange, onTitleChange }) => {
+const Idea = ({
+  title,
+  id,
+  body,
+  save,
+  onBodyChange,
+  onTitleChange,
+  deleteIdea
+}) => {
   const titleValue = title || '';
   const titleChangeHandler = event => {
     onTitleChange(id, event.target.value);
@@ -14,6 +22,10 @@ const Idea = ({ title, id, body, save, onBodyChange, onTitleChange }) => {
 
   const onBlurHandler = () => {
     save(id, title, body);
+  };
+
+  const onDeleteHandler = () => {
+    deleteIdea(id);
   };
 
   return (
@@ -44,6 +56,20 @@ const Idea = ({ title, id, body, save, onBodyChange, onTitleChange }) => {
               onChange={bodyChangeHandler}
             />
           </div>
+        </div>
+
+        <div className="field">
+          <p className="control">
+            <a
+              className="button is-link is-danger delete-button"
+              onClick={onDeleteHandler}
+            >
+              <span className="icon">
+                <i className="fas fa-trash" />
+              </span>
+              <span>Delete</span>
+            </a>
+          </p>
         </div>
       </div>
     </div>

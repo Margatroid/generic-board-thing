@@ -33,6 +33,16 @@ export function newIdea() {
   };
 }
 
+export function deleteIdea(id) {
+  return dispatch => {
+    dispatch({ type: START_LOADING });
+
+    return fetch(`http://localhost:8000/ideas/${id}`, { method: 'DELETE' })
+      .then(response => response, error => console.error('Error:', error))
+      .then(response => dispatch(loadIdeas()));
+  };
+}
+
 export function saveIdea(id, title, body) {
   return dispatch => {
     dispatch({ type: START_LOADING });

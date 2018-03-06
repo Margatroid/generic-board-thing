@@ -43,3 +43,13 @@ describe('blurring an input', () => {
     });
   });
 });
+
+describe('deleting', () => {
+  it('will call the deleteIdea handler when delete button is clicked', () => {
+    const mockHandler = jest.fn();
+    const wrapper = shallow(<Idea deleteIdea={mockHandler} id={12} />);
+    wrapper.find('.delete-button').simulate('click');
+
+    expect(mockHandler.mock.calls[0][0]).toBe(12);
+  });
+});

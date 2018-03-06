@@ -85,4 +85,26 @@ describe('async actions', () => {
         });
       });
   });
+
+  it('deletes an idea', () => {
+    const deleteMockFetch = fetch.mockResponseOnce(JSON.stringify({}));
+    const getAllIdeasMockFetch = fetch.mockResponseOnce(JSON.stringify([]));
+    const expectedActions = [
+      // Initial save spinner
+      { type: actions.START_LOADING },
+      // Reload of ideas
+      { type: actions.LOAD_IDEAS },
+      // Successful reload of ideas
+      { type: actions.LOAD_IDEAS_SUCCESS, ideas: [] }
+    ];
+    const store = mockStore({ ideas: [] });
+
+    return store.dispatch(actions.deleteIdea(5)).then(() => {
+      expect(store.getActions()).toEqual(expectedActions);
+
+      expect(deleteMockFetch.mock.calls[0][1]).toEqual({
+        method: 'DELETE'
+      });
+    });
+  });
 });
