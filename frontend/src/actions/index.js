@@ -3,6 +3,8 @@ export const LOAD_IDEAS_SUCCESS = 'LOAD_IDEAS_SUCCESS';
 export const ON_TITLE_CHANGE = 'ON_TITLE_CHANGE';
 export const ON_BODY_CHANGE = 'ON_BODY_CHANGE';
 export const START_LOADING = 'START_LOADING';
+export const IDEA_MOUSE_ENTER = 'IDEA_MOUSE_ENTER';
+export const IDEA_MOUSE_LEAVE = 'IDEA_MOUSE_LEAVE';
 
 // Action creators
 export function loadIdeas(focus = null) {
@@ -79,6 +81,14 @@ export function onBodyChange(id, text) {
     id,
     text
   };
+}
+
+export function ideaMouseEnter(id) {
+  return { type: IDEA_MOUSE_ENTER, id, entering: true };
+}
+
+export function ideaMouseLeave(id) {
+  return { type: IDEA_MOUSE_LEAVE, id, entering: false };
 }
 
 export function loadIdeasSuccess(ideas, focus = null) {

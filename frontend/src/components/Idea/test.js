@@ -49,7 +49,9 @@ describe('blurring an input', () => {
 describe('deleting', () => {
   it('will call the deleteIdea handler when delete button is clicked', () => {
     const mockHandler = jest.fn();
-    const wrapper = shallow(<Idea deleteIdea={mockHandler} id={12} />);
+    const wrapper = shallow(
+      <Idea hovering={true} deleteIdea={mockHandler} id={12} />
+    );
     wrapper.find('.delete-button').simulate('click');
 
     expect(mockHandler.mock.calls[0][0]).toBe(12);
@@ -76,5 +78,29 @@ describe('character count', () => {
     body.simulate('change', { target: { value: 'x'.repeat(141) } });
 
     expect(mockHandler.mock.calls.length).toBe(0);
+  });
+});
+
+describe('mouse hover events', () => {
+  it('calls mouseEnter prop', () => {
+    const mockHandler = jest.fn();
+    const wrapper = shallow(<Idea id={12} mouseEnter={mockHandler} />);
+    const box = wrapper.find('.box-wrapper');
+    expect(box.length).toBe(1);
+
+    box.simulate('mouseEnter');
+    expect(mockHandler.mock.calls.length).toBe(1);
+    expect(mockHandler.mock.calls[0][0]).toBe(12);
+  });
+
+  it('calls mouseLeave prop', () => {
+    const mockHandler = jest.fn();
+    const wrapper = shallow(<Idea id={15} mouseLeave={mockHandler} />);
+    const box = wrapper.find('.box-wrapper');
+    expect(box.length).toBe(1);
+
+    box.simulate('mouseLeave');
+    expect(mockHandler.mock.calls.length).toBe(1);
+    expect(mockHandler.mock.calls[0][0]).toBe(15);
   });
 });

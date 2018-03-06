@@ -50,4 +50,13 @@ describe('reducer', () => {
       expect(newState.ideas[1].focus).toEqual(true);
     });
   });
+
+  describe('hovering', () => {
+    it('will set hovering', () => {
+      const initialState = { ideas: [{ id: 8 }, { id: 33 }] };
+      const newState = reducer(initialState, actions.ideaMouseEnter(33));
+      expect(newState.ideas[0].hover).toBeFalsy();
+      expect(newState.ideas[1].hover).toBeTruthy();
+    });
+  });
 });

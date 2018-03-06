@@ -7,7 +7,9 @@ import {
   onTitleChange,
   onBodyChange,
   saveIdea,
-  deleteIdea
+  deleteIdea,
+  ideaMouseEnter,
+  ideaMouseLeave
 } from '../../actions';
 
 import Header from '../Header/';
@@ -34,6 +36,12 @@ const mapDispatchToProps = dispatch => {
     deleteIdea: id => {
       dispatch(deleteIdea(id));
     },
+    ideaMouseEnter: id => {
+      dispatch(ideaMouseEnter(id));
+    },
+    ideaMouseLeave: id => {
+      dispatch(ideaMouseLeave(id));
+    },
     onTitleChange: (id, text) => {
       dispatch(onTitleChange(id, text));
     },
@@ -58,6 +66,8 @@ export class App extends Component {
           saveIdea={this.props.saveIdea}
           deleteIdea={this.props.deleteIdea}
           ideas={this.props.ideas}
+          ideaMouseEnter={this.props.ideaMouseEnter}
+          ideaMouseLeave={this.props.ideaMouseLeave}
         />
       </div>
     );

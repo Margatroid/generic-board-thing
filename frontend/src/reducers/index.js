@@ -3,7 +3,9 @@ import {
   LOAD_IDEAS_SUCCESS,
   ON_TITLE_CHANGE,
   ON_BODY_CHANGE,
-  START_LOADING
+  START_LOADING,
+  IDEA_MOUSE_ENTER,
+  IDEA_MOUSE_LEAVE
 } from '../actions';
 
 const initialState = {
@@ -31,6 +33,15 @@ const loadIdeasSuccess = (state, action) => {
   return { ...state, ideas, loading: false };
 };
 
+const ideaHover = (state, action) => {
+  let ideas = state.ideas.map(idea => ({ ...idea }));
+  ideas = ideas.map(idea => {
+    idea.hover = action.id === idea.id && action.entering;
+    return idea;
+  });
+  return { ...state, ideas };
+};
+
 const ideasReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_IDEAS:
@@ -38,6 +49,9 @@ const ideasReducer = (state = initialState, action) => {
       return { ...state, loading: true };
     case LOAD_IDEAS_SUCCESS:
       return loadIdeasSuccess(state, action);
+    case IDEA_MOUSE_ENTER:
+    case IDEA_MOUSE_LEAVE:
+      return ideaHover(state, action);
     case ON_TITLE_CHANGE:
     case ON_BODY_CHANGE:
       return ideaEdit(state, action);

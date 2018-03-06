@@ -11,7 +11,10 @@ const Idea = ({
   onBodyChange,
   onTitleChange,
   deleteIdea,
-  focus
+  focus,
+  mouseEnter,
+  mouseLeave,
+  hovering
 }) => {
   const titleValue = title || '';
   const titleChangeHandler = event => {
@@ -32,6 +35,14 @@ const Idea = ({
     deleteIdea(id);
   };
 
+  const onMouseEnterHandler = () => {
+    mouseEnter(id);
+  };
+
+  const onMouseLeaveHandler = () => {
+    mouseLeave(id);
+  };
+
   const count = body && body.length;
   const characterCountDisplay =
     count > 125 ? (
@@ -40,8 +51,14 @@ const Idea = ({
       ''
     );
 
+  const deleteClass = `control ${!hovering ? 'control__hidden' : ''}`;
+
   return (
-    <div className="box-wrapper idea">
+    <div
+      className="box-wrapper idea"
+      onMouseEnter={onMouseEnterHandler}
+      onMouseLeave={onMouseLeaveHandler}
+    >
       <div className="box">
         <div className="field">
           <div className="control">
@@ -73,7 +90,7 @@ const Idea = ({
 
         <div className="field is-grouped">
           <p className="control is-expanded">{characterCountDisplay}</p>
-          <p className="control">
+          <p className={deleteClass}>
             <a
               className="button is-link is-danger delete-button"
               onClick={onDeleteHandler}

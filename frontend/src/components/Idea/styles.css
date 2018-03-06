@@ -17,3 +17,7 @@
 .idea__input--title {
   font-weight: bolder;
 }
+
+.control__hidden {
+  visibility: hidden;
+}

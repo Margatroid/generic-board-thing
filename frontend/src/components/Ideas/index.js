@@ -6,7 +6,9 @@ const Ideas = ({
   saveIdea,
   deleteIdea,
   onTitleChange,
-  onBodyChange
+  onBodyChange,
+  ideaMouseEnter,
+  ideaMouseLeave
 }) => {
   const ideaCards = ideas.map((idea, index) => {
     return (
@@ -20,6 +22,9 @@ const Ideas = ({
         focus={idea.focus}
         saveIdea={saveIdea}
         deleteIdea={deleteIdea}
+        mouseEnter={ideaMouseEnter}
+        mouseLeave={ideaMouseLeave}
+        hovering={idea.hover}
       />
     );
   });
