@@ -2,6 +2,7 @@ export const LOAD_IDEAS = 'LOAD_IDEAS';
 export const LOAD_IDEAS_SUCCESS = 'LOAD_IDEAS_SUCCESS';
 export const ON_TITLE_CHANGE = 'ON_TITLE_CHANGE';
 export const ON_BODY_CHANGE = 'ON_BODY_CHANGE';
+export const START_LOADING = 'START_LOADING';
 
 // Action creators
 export function loadIdeas() {
@@ -28,14 +29,13 @@ export function newIdea() {
         response => response.json(),
         error => console.error('Error:', error)
       )
-      .then(dispatch(loadIdeas()));
+      .then(response => dispatch(loadIdeas()));
   };
 }
 
 export function saveIdea(id, title, body) {
   return dispatch => {
-    // Start loading spinner
-    dispatch({ type: LOAD_IDEAS });
+    dispatch({ type: START_LOADING });
 
     const requestBody = JSON.stringify({ title, body });
     const headers = { 'content-type': 'application/json' };
@@ -49,7 +49,7 @@ export function saveIdea(id, title, body) {
         response => response.json(),
         error => console.error('Error:', error)
       )
-      .then(dispatch(loadIdeas()));
+      .then(response => dispatch(loadIdeas()));
   };
 }
 

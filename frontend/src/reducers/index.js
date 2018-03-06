@@ -2,7 +2,8 @@ import {
   LOAD_IDEAS,
   LOAD_IDEAS_SUCCESS,
   ON_TITLE_CHANGE,
-  ON_BODY_CHANGE
+  ON_BODY_CHANGE,
+  START_LOADING
 } from '../actions';
 
 const initialState = {
@@ -24,6 +25,7 @@ const ideaEdit = (state, action) => {
 const ideasReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_IDEAS:
+    case START_LOADING:
       return { ...state, loading: true };
     case LOAD_IDEAS_SUCCESS:
       return { ...state, ideas: action.ideas, loading: false };

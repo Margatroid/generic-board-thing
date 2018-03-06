@@ -59,7 +59,7 @@ describe('async actions', () => {
     const getAllIdeasMockFetch = fetch.mockResponseOnce(JSON.stringify([]));
     const expectedActions = [
       // Initial save spinner
-      { type: actions.LOAD_IDEAS },
+      { type: actions.START_LOADING },
       // Reload of ideas
       { type: actions.LOAD_IDEAS },
       // Successful reload of ideas
