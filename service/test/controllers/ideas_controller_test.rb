@@ -35,8 +35,12 @@ class IdeasControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update idea" do
-    patch idea_url(@idea), params: { idea: {  } }, as: :json
+    patch idea_url(@idea), params: { idea: { title: 'lol', body: 'wut' } }, as: :json
     assert_response 200
+
+    response = JSON.parse(@response.body)
+    assert_equal('wut', response['body'])
+    assert_equal('lol', response['title'])
   end
 
   test "should destroy idea" do
