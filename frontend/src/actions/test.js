@@ -53,4 +53,36 @@ describe('async actions', () => {
       expect(creationMockFetch.mock.calls[0][1]).toEqual({ method: 'POST' });
     });
   });
+
+  it('saves an idea', () => {
+    const saveMockFetch = fetch.mockResponseOnce(JSON.stringify({}));
+    const getAllIdeasMockFetch = fetch.mockResponseOnce(JSON.stringify([]));
+    const expectedActions = [
+      // Initial save spinner
+      { type: actions.LOAD_IDEAS },
+      // Reload of ideas
+      { type: actions.LOAD_IDEAS },
+      // Successful reload of ideas
+      { type: actions.LOAD_IDEAS_SUCCESS, ideas: [] }
+    ];
+    const store = mockStore({ ideas: [] });
+    const headers = { 'content-type': 'application/json' };
+
+    return store
+      .dispatch(actions.saveIdea(5, 'new title', 'new body'))
+      .then(() => {
+        expect(store.getActions()).toEqual(expectedActions);
+        expect(saveMockFetch.mock.calls[0][0]).toMatch('/ideas/5');
+
+        const expectedData = JSON.stringify({
+          title: 'new title',
+          body: 'new body'
+        });
+        expect(saveMockFetch.mock.calls[0][1]).toEqual({
+          method: 'PUT',
+          body: expectedData,
+          headers
+        });
+      });
+  });
 });

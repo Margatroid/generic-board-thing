@@ -28,3 +28,18 @@ describe('editing', () => {
     expect(mockHandler.mock.calls[0][1]).toBe('Hello world');
   });
 });
+
+describe('blurring an input', () => {
+  it('will call the save prop', () => {
+    const mockSave = jest.fn();
+    const wrapper = shallow(<Idea save={mockSave} id={2} title="a" body="b" />);
+    const inputs = wrapper.find('input');
+
+    inputs.forEach((input, index) => {
+      input.simulate('blur');
+      expect(mockSave.mock.calls[index][0]).toBe(2);
+      expect(mockSave.mock.calls[index][1]).toBe('a');
+      expect(mockSave.mock.calls[index][2]).toBe('b');
+    });
+  });
+});

@@ -1,7 +1,7 @@
 import React from 'react';
 import Idea from '../Idea';
 
-const Ideas = ({ ideas, onTitleChange, onBodyChange }) => {
+const Ideas = ({ ideas, saveIdea, onTitleChange, onBodyChange }) => {
   const ideaCards = ideas.map((idea, index) => {
     return (
       <Idea
@@ -11,6 +11,7 @@ const Ideas = ({ ideas, onTitleChange, onBodyChange }) => {
         key={index}
         title={idea.title}
         body={idea.body}
+        save={saveIdea}
       />
     );
   });

@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.css';
 
-const Idea = ({ title, id, body, onBodyChange, onTitleChange }) => {
+const Idea = ({ title, id, body, save, onBodyChange, onTitleChange }) => {
   const titleValue = title || '';
   const titleChangeHandler = event => {
     onTitleChange(id, event.target.value);
@@ -12,6 +12,10 @@ const Idea = ({ title, id, body, onBodyChange, onTitleChange }) => {
     onBodyChange(id, event.target.value);
   };
 
+  const onBlurHandler = () => {
+    save(id, title, body);
+  };
+
   return (
     <div className="box-wrapper">
       <div className="box">
@@ -19,6 +23,7 @@ const Idea = ({ title, id, body, onBodyChange, onTitleChange }) => {
           <div className="control">
             <input
               name="title"
+              onBlur={onBlurHandler}
               onChange={titleChangeHandler}
               className="input"
               type="text"
@@ -32,6 +37,7 @@ const Idea = ({ title, id, body, onBodyChange, onTitleChange }) => {
           <div className="control">
             <textarea
               name="body"
+              onBlur={onBlurHandler}
               className="textarea"
               placeholder="Your idea"
               value={bodyValue}

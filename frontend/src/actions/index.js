@@ -32,6 +32,27 @@ export function newIdea() {
   };
 }
 
+export function saveIdea(id, title, body) {
+  return dispatch => {
+    // Start loading spinner
+    dispatch({ type: LOAD_IDEAS });
+
+    const requestBody = JSON.stringify({ title, body });
+    const headers = { 'content-type': 'application/json' };
+
+    return fetch(`http://localhost:8000/ideas/${id}`, {
+      method: 'PUT',
+      body: requestBody,
+      headers
+    })
+      .then(
+        response => response.json(),
+        error => console.error('Error:', error)
+      )
+      .then(dispatch(loadIdeas()));
+  };
+}
+
 export function onTitleChange(id, text) {
   return {
     type: ON_TITLE_CHANGE,

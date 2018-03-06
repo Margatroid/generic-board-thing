@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { loadIdeas, newIdea, onTitleChange, onBodyChange } from '../../actions';
+import {
+  loadIdeas,
+  newIdea,
+  onTitleChange,
+  onBodyChange,
+  saveIdea
+} from '../../actions';
 
 import Header from '../Header/';
 import Ideas from '../Ideas/';
@@ -20,6 +26,9 @@ const mapDispatchToProps = dispatch => {
     },
     newIdea: () => {
       dispatch(newIdea());
+    },
+    saveIdea: (id, title, body) => {
+      dispatch(saveIdea(id, title, body));
     },
     onTitleChange: (id, text) => {
       dispatch(onTitleChange(id, text));
@@ -42,6 +51,7 @@ export class App extends Component {
         <Ideas
           onTitleChange={this.props.onTitleChange}
           onBodyChange={this.props.onBodyChange}
+          saveIdea={this.props.saveIdea}
           ideas={this.props.ideas}
         />
       </div>
