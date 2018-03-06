@@ -29,7 +29,7 @@ const Idea = ({
   };
 
   return (
-    <div className="box-wrapper">
+    <div className="box-wrapper idea">
       <div className="box">
         <div className="field">
           <div className="control">
@@ -37,7 +37,7 @@ const Idea = ({
               name="title"
               onBlur={onBlurHandler}
               onChange={titleChangeHandler}
-              className="input"
+              className="input idea__input idea__input--title"
               type="text"
               placeholder="Title"
               value={titleValue}
@@ -50,7 +50,7 @@ const Idea = ({
             <textarea
               name="body"
               onBlur={onBlurHandler}
-              className="textarea"
+              className="textarea idea__input"
               placeholder="Your idea"
               value={bodyValue}
               onChange={bodyChangeHandler}

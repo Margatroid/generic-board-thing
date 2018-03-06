@@ -7,3 +7,12 @@
 .box-wrapper > .box {
   height: 100%;
 }
+
+.idea__input {
+  border: none;
+  box-shadow: none;
+}
+
+.idea__input--title {
+  font-weight: bolder;
+}
