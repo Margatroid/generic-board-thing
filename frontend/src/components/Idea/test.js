@@ -66,4 +66,15 @@ describe('character count', () => {
     wrapper = shallow(<Idea body={bodyText} />);
     expect(wrapper.find('.idea__character-count').length).toBe(1);
   });
+
+  it('will not fire a change handler if user exceeds 140 in the body', () => {
+    const mockHandler = jest.fn();
+    const wrapper = shallow(
+      <Idea body={'x'.repeat(140)} onBodyChange={mockHandler} id={11} />
+    );
+    const body = wrapper.find('textarea[name="body"]');
+    body.simulate('change', { target: { value: 'x'.repeat(141) } });
+
+    expect(mockHandler.mock.calls.length).toBe(0);
+  });
 });

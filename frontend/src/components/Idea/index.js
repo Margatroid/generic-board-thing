@@ -1,6 +1,8 @@
 import React from 'react';
 import './styles.css';
 
+const CHARACTER_LIMIT = 140;
+
 const Idea = ({
   title,
   id,
@@ -17,6 +19,7 @@ const Idea = ({
 
   const bodyValue = body || '';
   const bodyChangeHandler = event => {
+    if (event.target.value.length > CHARACTER_LIMIT) return;
     onBodyChange(id, event.target.value);
   };
 
@@ -31,7 +34,7 @@ const Idea = ({
   const count = body && body.length;
   const characterCountDisplay =
     count > 125 ? (
-      <span className="idea__character-count">{`${count}/140`}</span>
+      <span className="idea__character-count">{`${count}/${CHARACTER_LIMIT}`}</span>
     ) : (
       ''
     );
