@@ -55,3 +55,15 @@ describe('deleting', () => {
     expect(mockHandler.mock.calls[0][0]).toBe(12);
   });
 });
+
+describe('character count', () => {
+  it('shows character count when remaining characters is less than 15', () => {
+    let bodyText = 'x'.repeat(125);
+    let wrapper = shallow(<Idea body={bodyText} />);
+    expect(wrapper.find('.idea__character-count').length).toBe(0);
+
+    bodyText = 'x'.repeat(126);
+    wrapper = shallow(<Idea body={bodyText} />);
+    expect(wrapper.find('.idea__character-count').length).toBe(1);
+  });
+});

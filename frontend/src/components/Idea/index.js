@@ -28,6 +28,14 @@ const Idea = ({
     deleteIdea(id);
   };
 
+  const count = body && body.length;
+  const characterCountDisplay =
+    count > 125 ? (
+      <span className="idea__character-count">{`${count}/140`}</span>
+    ) : (
+      ''
+    );
+
   return (
     <div className="box-wrapper idea">
       <div className="box">
@@ -58,7 +66,8 @@ const Idea = ({
           </div>
         </div>
 
-        <div className="field">
+        <div className="field is-grouped">
+          <p className="control is-expanded">{characterCountDisplay}</p>
           <p className="control">
             <a
               className="button is-link is-danger delete-button"
