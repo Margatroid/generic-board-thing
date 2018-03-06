@@ -32,7 +32,9 @@ describe('editing', () => {
 describe('blurring an input', () => {
   it('will call the save prop', () => {
     const mockSave = jest.fn();
-    const wrapper = shallow(<Idea save={mockSave} id={2} title="a" body="b" />);
+    const wrapper = shallow(
+      <Idea saveIdea={mockSave} id={2} title="a" body="b" />
+    );
     const inputs = wrapper.find('input');
 
     inputs.forEach((input, index) => {

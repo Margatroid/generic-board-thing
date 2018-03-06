@@ -17,7 +17,7 @@ const Ideas = ({
         key={index}
         title={idea.title}
         body={idea.body}
-        save={saveIdea}
+        saveIdea={saveIdea}
         deleteIdea={deleteIdea}
       />
     );

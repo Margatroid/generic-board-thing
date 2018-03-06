@@ -5,7 +5,7 @@ const Idea = ({
   title,
   id,
   body,
-  save,
+  saveIdea,
   onBodyChange,
   onTitleChange,
   deleteIdea
@@ -21,7 +21,7 @@ const Idea = ({
   };
 
   const onBlurHandler = () => {
-    save(id, title, body);
+    saveIdea(id, title, body);
   };
 
   const onDeleteHandler = () => {
